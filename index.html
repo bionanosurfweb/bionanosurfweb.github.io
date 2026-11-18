@@ -101,6 +101,8 @@
 .dialog-figure-empty p{font-size:11px!important;margin-top:4px}
 @media(max-width:700px){.dialog-main-unified{grid-template-columns:1fr;gap:20px}.dialog-figure-column{position:static;grid-row:1}.dialog-figure-column .dialog-figure img{max-height:245px}.dialog-figure-empty{padding:20px!important}}
 
+
+.dialog-main-full{grid-template-columns:minmax(0,1fr)}.dialog-main-full .dialog-figure-column{display:none}
 </style>
   
   
@@ -571,41 +573,6 @@ const TEAM = [
     ]
   },
   {
-    "id": "francesca",
-    "name": "Francesca Bussolari",
-    "initials": "FB",
-    "lab": "both",
-    "tone": "green",
-    "source": "https://inma.unizar-csic.es/en/agenda-eventos/thesis-defence-francesca-bussolari/",
-    "role": {
-      "es": "Investigadora · Doctora en Química Orgánica",
-      "en": "Researcher · PhD in Organic Chemistry"
-    },
-    "focus": {
-      "es": "Biocatálisis nanoactivada y cascadas enzimáticas controladas mediante campos magnéticos",
-      "en": "Nanoactuated biocatalysis and magnetically controlled enzyme cascades"
-    },
-    "bio": {
-      "es": "Su investigación se centra en la biocatálisis nanoactivada: sistemas que combinan enzimas y nanopartículas magnéticas para regular reacciones mediante estímulos externos. En su tesis doctoral, dirigida por Jesús Martínez de la Fuente y Valeria Grazú y defendida en 2026, estudió cascadas multienzimáticas controladas de manera remota.\n\nEsta aproximación busca compatibilizar enzimas con distintas condiciones óptimas de funcionamiento dentro de un mismo proceso, mejorar la estabilidad de los biocatalizadores y favorecer su reutilización. Su trayectoria conecta la inmovilización de biomoléculas, la química de materiales y el control térmico localizado, con potencial para desarrollar procesos biotecnológicos más eficientes y sostenibles.",
-      "en": "Her research focuses on nanoactuated biocatalysis, combining enzymes and magnetic nanoparticles to regulate biochemical reactions through external stimuli. Her doctoral thesis, supervised by Jesús Martínez de la Fuente and Valeria Grazú and defended in 2026, addressed the remote control of multienzymatic cascades.\n\nThis approach aims to combine enzymes with different operating requirements in a single process, improve catalyst stability and support biocatalyst reuse. Her work connects biomolecular immobilisation, materials chemistry and local thermal control, with potential applications in more efficient and sustainable biotechnological production."
-    },
-    "specialties": [
-      "biocatálisis",
-      "nanoactuación",
-      "enzimas inmovilizadas",
-      "nanopartículas magnéticas"
-    ],
-    "pubs": [
-      "advdrug22"
-    ],
-    "outputs": [
-      {
-        "es": "Tesis doctoral (2026): «Nanoactuated Biocatalysis: towards Remote-Controlled Enzyme Cascades via Magnetic Nanoparticles». Universidad de Zaragoza.",
-        "en": "PhD thesis (2026): “Nanoactuated Biocatalysis: towards Remote-Controlled Enzyme Cascades via Magnetic Nanoparticles”. University of Zaragoza."
-      }
-    ]
-  },
-  {
     "id": "liliane",
     "name": "Lilianne Beola Guibert",
     "initials": "LB",
@@ -850,6 +817,40 @@ const TEAM = [
       "baranyai26",
       "baranyai21"
     ]
+  },
+  {
+    "id": "carmen-gamez",
+    "name": "Carmen Gámez Sánchez",
+    "initials": "CG",
+    "lab": "both",
+    "kind": "management",
+    "tone": "green",
+    "email": "mcgamez@unizar.es",
+    "role": {
+      "es": "Gestora de proyectos científicos",
+      "en": "Research Project Manager"
+    },
+    "focus": {
+      "es": "Gestión, seguimiento y coordinación de proyectos de investigación",
+      "en": "Research project management, monitoring and coordination"
+    },
+    "bio": {
+      "es": "Carmen Gámez Sánchez desarrolla su actividad profesional en la gestión y coordinación de proyectos de investigación del grupo BIONANOSURF, en el Instituto de Nanociencia y Materiales de Aragón (INMA, CSIC–Universidad de Zaragoza). Su trabajo contribuye a la organización, el seguimiento y la gestión de los proyectos científicos, facilitando la coordinación de los equipos investigadores y el desarrollo de iniciativas colaborativas.\n\nHa participado como gestora del proyecto europeo SIROCCO (ERC Starting Grant), liderado por la Dra. María Moros y centrado en el control remoto de procesos de señalización celular mediante nanopartículas magnéticas, con posibles aplicaciones en medicina regenerativa y reparación tisular. Su labor de apoyo contribuye al cumplimiento de los objetivos científicos y administrativos de los proyectos.",
+      "en": "Carmen Gámez Sánchez works in research project management and coordination within BIONANOSURF at the Aragon Nanoscience and Materials Institute (INMA, CSIC–University of Zaragoza). She supports the organisation, monitoring and management of scientific projects, facilitating coordination among research teams and the development of collaborative research initiatives.\n\nShe has contributed as project manager to the European SIROCCO project (ERC Starting Grant), led by Dr María Moros and focused on the remote control of cell-signalling processes using magnetic nanoparticles, with potential applications in regenerative medicine and tissue repair. Her work supports the achievement of projects’ scientific and administrative objectives."
+    },
+    "specialties": [
+      "Gestión de proyectos científicos",
+      "Coordinación de equipos investigadores",
+      "Proyectos europeos",
+      "Seguimiento científico y administrativo"
+    ],
+    "projects": [
+      {
+        "name": "SIROCCO · ERC Starting Grant",
+        "es": "Gestión de un proyecto europeo liderado por la Dra. María Moros sobre control remoto de señalización celular mediante nanopartículas magnéticas, con posibles aplicaciones en medicina regenerativa y reparación tisular.",
+        "en": "Management of a European project led by Dr María Moros on remotely controlling cell signalling with magnetic nanoparticles, with potential applications in regenerative medicine and tissue repair."
+      }
+    ]
   }
 ];
 const PUBLICATIONS = [
@@ -1064,7 +1065,7 @@ const figureURL = (name) => window.BNS_ASSET_URLS?.[name] || `assets/${escapeHTM
 const sortedMembers = TEAM.filter(x=>!x.leader).sort((a,b)=>a.name.localeCompare(b.name,'es',{sensitivity:'base'}));
 function initialsAvatar(person, big=false){return `<div class="person-avatar tone-${escapeHTML(person.tone)} ${big?'avatar-big':''}" aria-hidden="true"><span>${escapeHTML(person.initials)}</span><i class="avatar-ring"></i></div>`;}
 function personCard(person, leadership=false){
- const sourceLabel = person.lab==='both' ? (language==='es'?'Líneas compartidas':'Shared research') : person.lab==='valeria'?'Valeria Grazú Lab':'Jesús M. de la Fuente Lab';
+ const sourceLabel = person.kind==='management' ? (language==='es'?'GESTIÓN DE PROYECTOS':'PROJECT MANAGEMENT') : person.lab==='both' ? (language==='es'?'Líneas compartidas':'Shared research') : person.lab==='valeria'?'Valeria Grazú Lab':'Jesús M. de la Fuente Lab';
  return `<button type="button" class="person-card ${leadership?'leader-card':'member-card'}" data-person="${escapeHTML(person.id)}" aria-label="${language==='es'?'Ver ficha de':'Read profile of'} ${escapeHTML(person.name)}">
   <span class="person-card-top"><span class="person-lab">${escapeHTML(leadership?(language==='es'?'DIRECCIÓN CIENTÍFICA':'SCIENTIFIC LEADERSHIP'):sourceLabel)}</span><span class="person-arrow" aria-hidden="true">↗</span></span>
   <span class="person-card-main">${initialsAvatar(person,leadership)}<span class="person-copy"><span class="person-role">${escapeHTML(choose(person.role))}</span><strong>${escapeHTML(person.name)}</strong><span class="person-focus">${escapeHTML(choose(person.focus))}</span></span></span>
@@ -1080,6 +1081,10 @@ function renderTeam(){
  document.querySelectorAll('[data-person]').forEach(node=>node.addEventListener('click',()=>openPerson(node.dataset.person)));
 }
 const SPECIALTIES_EN = {
+ 'Gestión de proyectos científicos':'Scientific project management',
+ 'Coordinación de equipos investigadores':'Research team coordination',
+ 'Proyectos europeos':'European research projects',
+ 'Seguimiento científico y administrativo':'Scientific and administrative project monitoring',
  'nanomedicina':'Nanomedicine','biosensores':'Biosensors','transferencia':'Technology transfer',
  'biofuncionalización':'Biofunctionalisation','nanoactuación':'Nanoactuation','terapia':'Therapy',
  'gliconanopartículas':'Glyconanoparticles','desarrollo farmacéutico':'Pharmaceutical development',
@@ -1119,12 +1124,19 @@ function openPerson(id){
    noneFigure:'Individual research illustration awaiting contribution.',
    caution:'Ongoing and preclinical research should not be interpreted as approved clinical devices or therapies.'
  };
+ const management=p.kind==='management';
+ if(management){
+   labels.intro=l==='es'?'GESTIÓN Y COORDINACIÓN DE PROYECTOS':'PROJECT MANAGEMENT & COORDINATION';
+   labels.areas=l==='es'?'ÁREAS DE ACTIVIDAD':'AREAS OF EXPERTISE';
+   labels.outputs=l==='es'?'PROYECTOS Y CONTRIBUCIONES':'PROJECTS & CONTRIBUTIONS';
+ }
  const paragraphTexts=(choose(p.bio)||'').split(/\n\s*\n/).map(t=>t.trim()).filter(Boolean);
  const bios=paragraphTexts.map(t=>`<p>${escapeHTML(t)}</p>`).join('');
  const areas=(p.specialties||[]).map(t=>`<li>${escapeHTML(l==='en'?(SPECIALTIES_EN[t]||t):t)}</li>`).join('');
  const pubCards=(p.pubs||[]).map(pid=>PUBLICATIONS.find(pub=>pub.id===pid)).filter(Boolean);
  const pubs=pubCards.map(pub=>`<li><a href="https://doi.org/${encodeURI(pub.doi)}" target="_blank" rel="noopener noreferrer">${escapeHTML(pub.title)} <span aria-hidden="true">↗</span></a><small>${escapeHTML(pub.journal)} · ${escapeHTML(pub.year)} · DOI: ${escapeHTML(pub.doi)}</small></li>`).join('');
  const outputs=(p.outputs||[]).map(o=>`<li class="dialog-output">${escapeHTML(o[l]||o.es||'')}</li>`).join('');
+ const projects=(p.projects||[]).map(project=>`<li class="dialog-output"><strong>${escapeHTML(project.name)}</strong>: ${escapeHTML(project[l]||project.es||'')}</li>`).join('');
  const emailLink=p.email?`<a class="dialog-link" href="mailto:${escapeHTML(p.email)}">✉ ${labels.email}: ${escapeHTML(p.email)}</a>`:'';
  const groupAddress=p.lab==='valeria'?'vgrazu@unizar.es':'j.m.fuente@csic.es';
  const groupLink=!p.email?`<a class="dialog-link" href="mailto:${groupAddress}">✉ ${labels.group} ↗</a>`:'';
@@ -1136,14 +1148,16 @@ function openPerson(id){
  $('#personDialogContent').innerHTML=`
   <div class="dialog-accent tone-${escapeHTML(p.tone)}"></div>
   <div class="dialog-header">${initialsAvatar(p,true)}<div><span class="dialog-kicker">BIONANOSURF / ${p.leader?'PI':'TEAM'}</span><h2 id="personName">${escapeHTML(p.name)}</h2><span class="dialog-role">${escapeHTML(choose(p.role))}</span></div></div>
-  <div class="dialog-main dialog-main-unified">
+  <div class="dialog-main dialog-main-unified ${management?'dialog-main-full':''}">
    <div class="dialog-content">
     <section class="dialog-profile-section"><h3>${labels.intro}</h3><p class="dialog-focus">${escapeHTML(choose(p.focus))}</p>${bios}${p.pending?`<p class="dialog-pending">${labels.pending}</p>`:''}</section>
     <section class="dialog-profile-section"><h3>${labels.areas}</h3><ul class="dialog-specialties">${areas}</ul></section>
-    <section class="dialog-profile-section"><h3>${labels.pubs}</h3>${pubs?`<ul class="dialog-publications">${pubs}</ul>`:`<p class="dialog-unverified">${labels.notlisted}</p>`}</section>
-    <section class="dialog-profile-section"><h3>${labels.outputs}</h3>${outputs?`<ul class="dialog-publications dialog-outputs">${outputs}</ul>`:`<p class="dialog-unverified">${labels.notOutputs}</p>`}</section>
+    ${management
+      ? `<section class="dialog-profile-section"><h3>${labels.outputs}</h3><ul class="dialog-publications dialog-outputs">${projects}</ul></section>`
+      : `<section class="dialog-profile-section"><h3>${labels.pubs}</h3>${pubs?`<ul class="dialog-publications">${pubs}</ul>`:`<p class="dialog-unverified">${labels.notlisted}</p>`}</section>
+         <section class="dialog-profile-section"><h3>${labels.outputs}</h3>${outputs?`<ul class="dialog-publications dialog-outputs">${outputs}</ul>`:`<p class="dialog-unverified">${labels.notOutputs}</p>`}</section>`}
     <section class="dialog-profile-section"><h3>${labels.contact}</h3><div class="dialog-links">${emailLink}${groupLink}${orcidLink}${sourceLink}</div></section>
-    <p class="dialog-evidence-note">${labels.caution}</p>
+    ${management?'':`<p class="dialog-evidence-note">${labels.caution}</p>`}
    </div>
    <aside class="dialog-figure-column">${figure}</aside>
   </div>`;
